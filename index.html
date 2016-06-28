@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>编号生成器</title>
+  <meta charset="UTF-8">
+  <meta name="keywords" content="keyword1,keyword2,keyword3">
+  <meta name="description" content="this is my page">
+  <meta name="content-type" content="text/html; charset=US-ASCII">
+  <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css" />
+  <link rel="stylesheet" type="text/css" href="bootstrap-datetimepicker/css/bootstrap-datetimepicker.css" />
+  <link rel="stylesheet" type="text/css" href="toastr/toastr.css" />
+</head>
+<body>
+  <ul id="myTab" class="nav nav-tabs">
+    <li class="active"><a href="#IDcard" data-toggle="tab">身份证号码</a>
+    </li>
+    <li><a href="#busLicenseDiv" data-toggle="tab">营业执照注册号</a></li>
+    <li><a href="#orgCodeDiv" data-toggle="tab">组织机构代码</a></li>
+    <li><a href="#creditCodeDiv" data-toggle="tab">统一社会信用代码</a></li>
+    <li><a href="#phoneNoDiv" data-toggle="tab">手机号码</a></li>
+    <li><a href="#bankaccountDiv" data-toggle="tab">银行卡账号</a></li>
+  </ul>
+  <div id="myTabContent" class="tab-content">
+    <div class="tab-pane fade in active" id="IDcard">
+      <div class="page-header">
+        <h3 style="text-align: center">身份份证号码生成</h3>
+      </div>
+      <form class="form-horizontal " method="get">
+        <div class="form-group">
+          <label class="col-sm-4 control-label">所在地</label>
+          <div class="col-sm-4">
+            <div class="col-sm-3">
+              <select class="form-control" id="province">
+              </select>
+            </div>
+            <div class="col-sm-3">
+              <select class="form-control" id="city">
+              </select>
+            </div>
+            <div class="col-sm-3">
+              <select class="form-control" id="county">
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-4 control-label">生日</label>
+          <div class="col-sm-2">
+            <input type="text" class="form-control" id="birthday" readonly>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-4 control-label">性别</label>
+          <div class="col-sm-4">
+            <label class="radio-inline"> <input type="radio"
+              name="sex" id="sex1" value="1">男
+            </label> <label class="radio-inline"> <input type="radio"
+              name="sex" id="sex2" value="2"> 女
+            </label>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-4 control-label"></label>
+          <div class="col-sm-5">
+            <button type="button" class="btn btn-success"
+              onclick="generateId();">生成</button>
+            <button type="button" class="btn btn-info" onclick="checkCard();">校验</button>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-4 control-label">身份证号</label>
+          <div class="col-sm-3">
+            <input type="text" class="form-control" id='IDCard'>
+          </div>
+        </div>
+      </form>
+    </div>
+
+     <div class="tab-pane fade" id="busLicenseDiv">
+      <div class="page-header">
+        <h3 style="text-align: center">营业执照注册号生成</h3>
+      </div>
+       <form class="form-horizontal " method="get">
+        <div class="form-group">
+          <label class="col-sm-4 control-label">营业执照注册号</label>
+          <div class="col-sm-3">
+            <input type="text" class="form-control" id='busLicenseNum'>
+          </div>
+        </div>
+         <div class="form-group">
+          <label class="col-sm-4 control-label"></label>
+          <div class="col-sm-5">
+            <button type="button" class="btn btn-success" onclick="generatorBusLicenseNum()">生成</button>
+            <button type="button" class="btn btn-info" onclick="busLicenseValidate(document.getElementById('busLicenseNum').value)">校验</button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div class="tab-pane fade" id="orgCodeDiv">
+      <div class="page-header">
+        <h3 style="text-align: center">组织机构代码生成</h3>
+      </div>
+       <form class="form-horizontal " method="get">
+        <div class="form-group">
+          <label class="col-sm-4 control-label">组织机构代码</label>
+          <div class="col-sm-3">
+            <input type="text" class="form-control" id='orgCode'>
+          </div>
+        </div>
+         <div class="form-group">
+          <label class="col-sm-4 control-label"></label>
+          <div class="col-sm-5">
+            <button type="button" class="btn btn-success" onclick="generatorOrgCode()">生成</button>
+            <button type="button" class="btn btn-info" onclick="orgCodeValidate(document.getElementById('orgCode').value)">校验</button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div class="tab-pane fade" id="creditCodeDiv">
+      <div class="page-header">
+        <h3 style="text-align: center">统一社会信用代码生成</h3>
+      </div>
+       <form class="form-horizontal " method="get">
+        <div class="form-group">
+          <label class="col-sm-4 control-label">统一社会信用代码</label>
+          <div class="col-sm-3">
+            <input type="text" class="form-control" id='creditCode'>
+          </div>
+        </div>
+         <div class="form-group">
+          <label class="col-sm-4 control-label"></label>
+          <div class="col-sm-5">
+            <button type="button" class="btn btn-success" onclick="generatorCreditCode();">生成</button>
+            <button type="button" class="btn btn-info" onclick="isCreditCode(document.getElementById('creditCode').value);">校验</button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div class="tab-pane fade" id="phoneNoDiv">
+      <div class="page-header">
+        <h3 style="text-align: center">手机号码生成</h3>
+      </div>
+       <form class="form-horizontal " method="get">
+        <div class="form-group">
+          <label class="col-sm-4 control-label">手机号码</label>
+          <div class="col-sm-3">
+            <input type="text" class="form-control" id='phoneNo'>
+          </div>
+        </div>
+         <div class="form-group">
+          <label class="col-sm-4 control-label"></label>
+          <div class="col-sm-5">
+            <button type="button" class="btn btn-success" onclick="generatorPhoneNo();">生成</button>
+            <button type="button" class="btn btn-info" onclick="checkMobile(document.getElementById('phoneNo').value);">校验</button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="tab-pane fade" id="bankaccountDiv">
+      <div class="page-header">
+        <h3 style="text-align: center">银行卡号生成</h3>
+      </div>
+       <form class="form-horizontal " method="get">
+        <div class="form-group">
+          <label class="col-sm-4 control-label">银行卡号</label>
+          <div class="col-sm-3">
+            <input type="text" class="form-control" id='bankaccount'>
+          </div>
+        </div>
+         <div class="form-group">
+          <label class="col-sm-4 control-label"></label>
+          <div class="col-sm-5">
+            <button type="button" class="btn btn-success" onclick="generatorBankAccount();">生成</button>
+            <button type="button" class="btn btn-info" onclick="luhmCheck(document.getElementById('bankaccount').value);">校验</button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+
+  </div>
+</body>
+</html>
+<script type="text/javascript" src="js/jquery-2.1.0.js"></script>
+<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script><!--日期控件-->
+<script type="text/javascript" src="bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js"></script><!--日期控件中文-->
+<script type="text/javascript" src="toastr/toastr.js"></script><!--消息提示-->
+<script type="text/javascript" src="area.js"></script><!--行政区划选择-->
+<script type="text/javascript" src="areas.js"></script><!--生成编号需要的行政区划（部分）-->
+<script type="text/javascript" src="idCard.js"></script><!--身份证号码生成-->
+<script type="text/javascript" src="busLicense.js"></script><!--营业执照注册号生成-->
+<script type="text/javascript" src="orgCode.js"></script><!--组织机构代码生成-->
+<script type="text/javascript" src="creditCode.js"></script><!--统一社会信用代码生成-->
+<script type="text/javascript" src="phoneNo.js"></script><!--手机号码生成-->
+<script type="text/javascript" src="bankaccount.js"></script><!--银行卡号生成-->
+
+
