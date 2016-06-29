@@ -1,0 +1,44 @@
+<html>
+<head>
+<script type="text/javascript">
+var NUM = 16;
+function getGYanzheng(x){
+	var a = new Array(NUM);
+	var p = new Array(NUM);
+	var temp;
+	if(x.length != NUM-2){
+		return false;
+	}
+	for(var i= 0; i < x.length; i++){
+		if(isNaN(x.charAt(i))){
+			return false;
+		}else{
+			a[i+1] = parseInt(x.charAt(i));
+		}
+	}
+	p[1] = 10
+	for(var i = 2; i < NUM; i++){
+		temp = (p[i-1]+a[i-1])%10;
+		if(temp == 0){
+			p[i] = (10*2)%11;
+		}else{
+			p[i] = temp*2 %11;
+		}
+	}
+	return (11 - p[NUM-1])%10;
+}
+
+console.log(getGYanzheng("220103600216890"));
+$(document).ready(function(){
+$("#button").click(function(){
+var value = $("#num").attr("value");
+$(".output").html(getGYanzheng(value));
+});
+});
+
+	</script>
+</head>
+<body>
+
+</body>
+</html>
