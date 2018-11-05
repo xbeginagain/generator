@@ -19,7 +19,7 @@ $(function(){
     		province.append("<option value='"+key+"'>"+getNameByKey(key,area)+"</option>");
     	}
 	});
-   province.on('click',function(){
+   province.on('change',function(){
     cleanSelect(city);
     cleanSelect(county);
      cityArea = getChilden($(this).val(),area);
@@ -28,7 +28,7 @@ $(function(){
       }
    });
 
-   city.on('click',function(){
+   city.on('change',function(){
     cleanSelect(county);
     var countyArea = getChilden($(this).val(),cityArea);
     for(var key in countyArea){
