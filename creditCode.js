@@ -337,7 +337,7 @@ function generatorCreditCode(){
   }
   var orgCode = num+""+C9;
   var code = regOrg+orgtype+area+orgCode;
-  var str = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  var str = '0123456789ABCDEFGHJKLMNPQRTUWXY';
   var wi =[1,3,9,27,19,26,16,17,20,29,25,13,8,24,10,30,28];
   var sum = 0;
     for (var i = 0; i < 17; i++) {
